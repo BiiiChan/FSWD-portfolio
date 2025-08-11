@@ -1,0 +1,116 @@
+.about {
+  max-width: 700px;
+  margin: 3rem auto 5rem;
+  color: #cdd9e5;
+  position: relative;
+}
+
+.about-title {
+  color: #58a6ff;
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.about-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Arrow buttons */
+.arrow {
+  font-size: 2.5rem;
+  background: transparent;
+  border: none;
+  color: #58a6ff;
+  cursor: pointer;
+  user-select: none;
+  padding: 0;
+  transition: color 0.3s ease, transform 0.3s ease;
+  flex-shrink: 0;
+  margin-top: 0.3rem;
+}
+
+.arrow:hover:not(.disabled) {
+  color: #1f6feb;
+  transform: scale(1.2);
+}
+
+.arrow.disabled {
+  color: #444c56;
+  cursor: default;
+  transform: none;
+}
+
+/* Paragraph container with sliding animation */
+.about-text {
+  flex: 1;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #adbac7;
+  padding: 0 1rem;
+  min-height: 110px; /* prevent layout shift */
+  display: flex;
+  align-items: center;
+}
+
+/* Highlights */
+.highlight {
+  color: #58a6ff;
+  font-weight: 700;
+}
+
+em {
+  font-style: italic;
+  color: #8b949e;
+}
+
+/* Slide in from right */
+.animate-slide-in-right {
+  animation: slideInFromRight 0.5s ease forwards;
+}
+
+/* Slide in from left */
+.animate-slide-in-left {
+  animation: slideInFromLeft 0.5s ease forwards;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .about-content {
+    flex-direction: column;
+  }
+  .arrow {
+    margin: 1rem 0 0 0;
+  }
+  .about-text {
+    padding: 0;
+    min-height: auto;
+  }
+}
