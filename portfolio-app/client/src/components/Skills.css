@@ -1,117 +1,86 @@
-.skills {
-  padding: 40px;
+.skills-section {
+  padding: 4rem 2rem;
+  background: #fdf6f0; /* beige */
+  color: #333;
   text-align: center;
-  background: var(--bg);
 }
 
 .skills-title {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: var(--accent-2); /* darker pink */
+  font-size: 2.5rem;
+  color: #d291bc; /* light pink */
+  margin-bottom: 3rem;
 }
 
-/* Timeline container */
 .timeline {
   position: relative;
-  margin: 20px auto;
-  padding: 0 20px;
-  border-left: 3px solid var(--accent); /* soft pink line */
-  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 0;
+  width: 80%;
 }
 
-/* Timeline items */
-.timeline-item {
-  margin: 24px 0;
-  position: relative;
-}
-
-.timeline-dot {
-  width: 16px;
-  height: 16px;
-  background: var(--accent-2); /* darker pink dot */
-  border-radius: 50%;
+.timeline::before {
+  content: "";
   position: absolute;
-  left: -9px;
-  top: 6px;
-  border: 3px solid var(--panel); /* contrast border */
-  box-shadow: 0 0 6px var(--shadow);
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background: #d291bc;
+}
+
+.timeline-item {
+  position: relative;
+  margin: 2rem 0;
+  width: 50%;
+}
+
+.timeline-item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+  left: 50%;
+  text-align: left;
 }
 
 .timeline-content {
-  margin-left: 30px;
-  background: var(--panel);
-  padding: 16px;
-  border-radius: var(--radius);
-  text-align: left;
-  box-shadow: 0 6px 20px var(--shadow);
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  width: 90%;
 }
 
-.timeline-content h3 {
-  margin: 0 0 6px;
-  color: var(--accent-2);
-  font-size: 1.1rem;
+.timeline-content::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #d291bc;
+  border: 3px solid #fff;
 }
 
-.timeline-content p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.4;
+.timeline-item:nth-child(odd) .timeline-content::after {
+  right: -12px;
 }
 
-/* Buttons */
-.btn {
-  padding: 8px 14px;
-  margin: 6px 4px 0;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.2s ease;
+.timeline-item:nth-child(even) .timeline-content::after {
+  left: -12px;
 }
 
-.pink-btn {
-  background: var(--accent);
-  color: #fff;
-  box-shadow: 0 6px 14px rgba(247, 198, 208, 0.3);
-}
-.pink-btn:hover {
-  background: var(--accent-2);
-  transform: translateY(-2px);
+.timeline-year {
+  font-weight: bold;
+  color: #d291bc;
+  font-size: 1.2rem;
 }
 
-.delete-btn {
-  background: #ff4d6d;
-  color: #fff;
-  box-shadow: 0 6px 14px rgba(255, 77, 109, 0.3);
-}
-.delete-btn:hover {
-  background: #e63956;
-  transform: translateY(-2px);
-}
-
-/* Add skill form */
-.add-skill {
-  margin-top: 32px;
-  padding: 20px;
-  background: var(--panel);
-  border-radius: var(--radius);
-  box-shadow: 0 8px 20px var(--shadow);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.add-skill input {
-  padding: 10px;
-  margin: 6px;
-  border-radius: 8px;
-  border: 1px solid #efe6e6;
-  font-size: 0.95rem;
-  outline: none;
-}
-
-.add-skill input:focus {
-  border-color: var(--accent-2);
-  box-shadow: 0 0 8px rgba(230, 183, 199, 0.4);
+.timeline-skill {
+  margin-top: 0.5rem;
+  color: #444;
+  font-size: 1rem;
 }

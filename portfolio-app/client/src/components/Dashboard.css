@@ -1,0 +1,96 @@
+.dashboard {
+  padding: 30px;
+  font-family: "Poppins", sans-serif;
+  background: #ffe4e1; /* light pink */
+  min-height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  color: #5a3e36;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.tabs button {
+  background: beige;
+  border: none;
+  padding: 12px 20px;
+  margin: 0 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.tabs button.active {
+  background: #ffb6c1;
+  color: white;
+}
+
+.tab-content {
+  background: #fff7f5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+input,
+textarea {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+button {
+  background: #ffb6c1;
+  border: none;
+  padding: 10px 16px;
+  margin-top: 10px;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff9aae;
+}
+
+/* Skills Timeline */
+.timeline {
+  position: relative;
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline li {
+  margin: 20px 0;
+  position: relative;
+  padding-left: 40px;
+}
+
+.timeline-dot {
+  width: 15px;
+  height: 15px;
+  background: #ff6f91;
+  border-radius: 50%;
+  position: absolute;
+  left: 10px;
+  top: 5px;
+}
+
+.timeline-content {
+  background: beige;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
