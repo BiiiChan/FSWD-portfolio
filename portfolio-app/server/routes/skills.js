@@ -3,55 +3,31 @@ const router = express.Router();
 const Skill = require("../models/Skill");
 const auth = require("../middleware/auth");
 
-// Create
+// Get all skills (public)
+router.get("/", async (req, res) => {
+  const skills = await Skill.find();
+  res.json(skills);
+});
+
+// Add skill (admin)
 router.post("/", auth, async (req, res) => {
-  try {
-    const { name, level } = req.body;
-    const skill = new Skill({ name, level, owner: req.userId });
-    await skill.save();
-    res.json(skill);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+  const skill = new Skill(req.body);
+  await skill.save();
+  res.json(skill);
 });
 
-// Read
-router.get("/", auth, async (req, res) => {
-  try {
-    const skills = await Skill.find({ owner: req.userId });
-    res.json(skills);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Update
+// Update skill
 router.put("/:id", auth, async (req, res) => {
-  try {
-    const skill = await Skill.findOneAndUpdate(
-      { _id: req.params.id, owner: req.userId },
-      { $set: req.body },
-      { new: true }
-    );
-    if (!skill) return res.status(404).json({ msg: "Not found" });
-    res.json(skill);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+  const skill = await Skill.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
+  res.json(skill);
 });
 
-// Delete
+// Delete skill
 router.delete("/:id", auth, async (req, res) => {
-  try {
-    const skill = await Skill.findOneAndDelete({
-      _id: req.params.id,
-      owner: req.userId,
-    });
-    if (!skill) return res.status(404).json({ msg: "Not found" });
-    res.json({ msg: "Deleted" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+  await Skill.findByIdAndDelete(req.params.id);
+  res.json({ msg: "Deleted" });
 });
 
 module.exports = router;

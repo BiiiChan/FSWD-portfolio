@@ -3,62 +3,31 @@ const router = express.Router();
 const Project = require("../models/Project");
 const auth = require("../middleware/auth");
 
-// Create
+// Get projects (public)
+router.get("/", async (req, res) => {
+  const projects = await Project.find();
+  res.json(projects);
+});
+
+// Add project (admin)
 router.post("/", auth, async (req, res) => {
-  try {
-    const { title, description, link } = req.body;
-    const project = new Project({
-      title,
-      description,
-      link,
-      owner: req.userId,
-    });
-    await project.save();
-    res.json(project);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+  const project = new Project(req.body);
+  await project.save();
+  res.json(project);
 });
 
-// Read all (for a user)
-router.get("/", auth, async (req, res) => {
-  try {
-    const projects = await Project.find({ owner: req.userId }).sort({
-      createdAt: -1,
-    });
-    res.json(projects);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Update
+// Update project
 router.put("/:id", auth, async (req, res) => {
-  try {
-    const project = await Project.findOneAndUpdate(
-      { _id: req.params.id, owner: req.userId },
-      { $set: req.body },
-      { new: true }
-    );
-    if (!project) return res.status(404).json({ msg: "Not found" });
-    res.json(project);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+  const project = await Project.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
+  res.json(project);
 });
 
-// Delete
+// Delete project
 router.delete("/:id", auth, async (req, res) => {
-  try {
-    const project = await Project.findOneAndDelete({
-      _id: req.params.id,
-      owner: req.userId,
-    });
-    if (!project) return res.status(404).json({ msg: "Not found" });
-    res.json({ msg: "Deleted" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+  await Project.findByIdAndDelete(req.params.id);
+  res.json({ msg: "Deleted" });
 });
 
 module.exports = router;
